@@ -1,0 +1,3 @@
+#!/bin/sh
+
+./docker/bin/symfony/console debug:container

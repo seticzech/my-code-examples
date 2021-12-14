@@ -1,0 +1,23 @@
+{block content}
+<section id="be-form-section" class="vertical-fix" style="height: 100%;">
+    <div class="container">
+        <form id="be-form" n:name="loginForm">
+            {if $flashes}
+                <div n:foreach="$flashes as $flash" class="alert alert-danger">
+                    {$flash->message}
+                </div>
+            {/if}
+
+            <div class="form-row" id="row-be-form">
+                <label class="be-form-heading">Username</label><input class="form-control item" n:name="username">
+            </div>
+            <div class="form-row" id="row-be-form">
+                <label class="be-form-heading">Password</label><input class="form-control item" n:name="password">
+            </div>
+            <div class="form-row" id="row-be-form"></div>
+            <div class="form-row" id="row-be-form">
+                <div class="col"><button class="btn btn-primary float-right" type="submit" id="login">LOGIN</button></div>
+            </div>
+        </form>
+    </div>
+</section>

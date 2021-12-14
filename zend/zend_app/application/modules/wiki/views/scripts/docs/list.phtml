@@ -1,0 +1,44 @@
+<?php
+
+	function moveTree ($folderItems, $template, &$id = 0, $id_parent = 0, $level = 0, $parentExpanded = false, $moveTree = null)
+	{
+		$level++;
+		foreach ($folderItems as $item) {
+			
+			$id = $item->id;
+			$id_parent = $item->id_parent;
+			$margin = 12 * ($level - 1);
+			$status = ($item->expanded) ? "expand" : "colapse";
+			
+			$button = ($item->items->count()) ? "+" : "&nbsp;";
+			if ($item->expanded) $button = "-";
+			$treeStyle = ($level == 1 || $parentExpanded) ? " style=\"display: block;\"" : "";
+			$expanded = ($item->expanded) ? 1 : 0;
+			
+			if ($id != "trash") {
+
+				$moveTree .= "<ul id=\"" . $id . "\" class=\"itemTree " . $id_parent . "\"" . $treeStyle . ">\n";
+				
+				if ($item->selected) {
+					$currentClass = " current";
+					$template->selected = $item->name;
+				} else {
+					$currentClass = "";
+				}
+				
+				$moveTree .= "<li style=\"margin-left: " . $margin . "px\"><a href=\"javascript://\" class=\"status " . $status . "\"><span class=\"button\">" . $button . "</span></a><a href=\"javascript://\" item=\"" . $item->name . "\" class=\"moveItem\"><span class=\"itemName folder" . $currentClass . "\">" . $item->name . "</span></a></li>\n";
+				$moveTree .= moveTree ($item->items, $template, $id, $id_parent, $level, $expanded);
+				$moveTree .= "</ul>\n";
+			}
+		}
+		return $moveTree;
+	}
+	
+?>
+	<ul id="itemTree">
+<?php
+
+	echo moveTree ($this->folderTree, $this);
+	
+?>
+	</ul>

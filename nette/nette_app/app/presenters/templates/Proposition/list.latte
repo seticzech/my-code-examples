@@ -1,0 +1,50 @@
+{block content}
+    <section id="be-form-section" class="vertical-fix" style="height: 100%;">
+        <div class="container">
+
+            {if $flashes}
+                <div n:foreach="$flashes as $flash" class="alert alert-danger">
+                    {$flash->message}
+                </div>
+            {/if}
+
+            <form id="be-form-list">
+                <div class="form-row">
+                    <div class="col align-items-center"><label class="be-list-main-heading"><strong>{$project->project} - {$project->account}</strong><br></label><a class="btn btn-primary float-right" role="button" id="list-add-new" href={link Proposition:add $project->projectId}><i class="fa fa-plus"></i> ADD NEW</a></div>
+                </div>
+                {foreach $propositions as $proposition}
+                    <div class="form-row">
+                        <div class="col col-12" id="be-list-col"></div>
+                        <div class="col col-7"><a href="{link Proposition:edit $proposition->getId()}" id="be-proposition-link">{$proposition->getName()}<br></a><span id="be-proposition-number">{$proposition->getPropositionId()}<br></span>
+                            {* Duration is nice-to-have and is disabled for now *}
+                            {*<span class="float-left" id="be-proposition-duration"><i class="la la-clock-o" id="be-clock-icon"></i><strong>VALID 1 SEP 2018 - 30 SEP 2018</strong><br></span>*}
+                            <span
+                                    class="float-left" id="be-proposition-customer-duration"><i class="la la-calendar-minus-o"></i>&nbsp;{$duration[$proposition->getDuration()]}&nbsp;</span>
+                        </div>
+                        <div class="col">
+                            <a class="btn btn-link btn-sm float-right" style="text-decoration: none" role="button" href={link Proposition:edit $proposition->getId()}>
+                                <i class="la la-pencil" id="pencil-icon"></i>Edit</a>
+                                <a class="btn btn-link btn-sm float-right" data-confirm="1" style="text-decoration: none" role="button" href={link Proposition:remove $proposition->getId()}>
+                                    <i class="la la-trash" id="pencil-icon"></i>Remove</a>
+                        </div>
+                    </div>
+                {/foreach}
+            </form>
+        </div>
+    </section>
+
+
+{/}
+{block scripts}
+<script>
+    $(function() {
+        $('a[data-confirm]').on('click', function(e) {
+            if (!confirm('Do you want to proceed?')) {
+                e.preventDefault();
+                return false;
+            }
+
+            return true;
+        })
+    })
+</script>

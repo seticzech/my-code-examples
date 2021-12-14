@@ -1,0 +1,32 @@
+parameters:
+  # please override following in local config for production setup
+  users:
+    ben: 1234
+  roles:
+    ben: ben
+
+services:
+  authenticator: Nette\Security\SimpleAuthenticator(%users%, %roles%)
+  acl:
+    factory: Nette\Security\Permission
+    setup:
+      - addRole(guest)
+      - addRole(user)
+      - addRole(ben, [user])
+
+      - addResource(account:1)
+      - addResource(account:2)
+      - addResource(account:3)
+      - addResource(account:4)
+      - addResource(account:5)
+      - addResource(account:6)
+      - addResource(account:7)
+      - addResource(account:8)
+      - addResource(account:9)
+      - addResource(account:10)
+
+      - allow(ben, account:6)
+      - allow(ben, account:7)
+      - allow(ben, account:8)
+      - allow(ben, account:9)
+      - allow(ben, account:10)

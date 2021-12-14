@@ -1,0 +1,46 @@
+<?php
+
+	// vlozeni CSS
+	$this->headLink()->appendStylesheet('/public/css/dialogForms.css', 'screen,projection');
+	
+	// formular
+	if (isset ($this->form)) {
+			
+		echo "<form action=\"" . $this->form->getAction() . "\" method=\"" . $this->form->getMethod() . "\" class=\"dialog\">
+		<table cellspacing=\"6\" class=\"account\" style=\"margin-bottom: 18px;\">
+		<tr>
+			<td class=\"col\">" . $this->form->email . "</td>
+			<td class=\"col\">" . $this->form->password . "</td>
+			<td class=\"col\">" . $this->form->password_retype . "</td>
+		</tr>
+		</table>
+		<table cellspacing=\"6\" class=\"account\">
+		<tr>
+			<td class=\"col1\">" . $this->form->title . "</td>
+			<td class=\"col2\">" . $this->form->first_name . "</td>
+			<td class=\"col3\">" . $this->form->last_name . "</td>
+		</tr>
+		<tr>
+			<td colspan=\"3\">" . $this->form->address . "</td>
+		</tr>
+		<tr>
+			<td class=\"col1\">" . $this->form->zip . "</td>
+			<td class=\"col2\">" . $this->form->city . "</td>
+			<td class=\"col3\">" . $this->form->country . "</td>
+		</tr>
+		</table>
+		<table cellspacing=\"6\" class=\"account\">
+		<tr>
+			<td class=\"col\">" . $this->form->cell_phone . "</td>
+			<td class=\"col\">" . $this->form->phone . "</td>
+			<td class=\"col\">" . $this->form->fax . "</td>
+		</tr>
+		<tr>
+			<td colspan=\"3\">" . $this->form->comment . "</td>
+		</tr>
+		<tr>
+			<td colspan=\"3\" class=\"butSubmit\">" . $this->form->callback . "\n" . $this->form->email_old . "\n" . $this->form->id_role . "\n" . $this->form->butSubmit . "</td>
+		</tr>
+		</table>
+		</form>\n";
+	}

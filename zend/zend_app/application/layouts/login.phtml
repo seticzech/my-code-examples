@@ -1,0 +1,91 @@
+<?php
+/**
+ * aPortal - login layout
+ * 
+ * @author Jiří Pazderník <pazdernik.j@atlas.cz>
+ */
+
+$this->pageTitle = __('unit:login');
+
+// nastavení hlavičky okna prohlížeče
+// formát hlavičky je main_title / page_title
+$this->headTitle(__('layout:page_title_main')); // titulek 'main', např, jméno firmy
+$this->headTitle($this->pageTitle);				// titulek stránky
+$this->headTitle()->setSeparator(' - ');		// oddělovač titulků
+
+// include CSS
+$this->headLink()->prependStylesheet('/public/css/thickbox.css');
+$this->headLink()->prependStylesheet('/public/css/login.css');
+$this->headLink()->prependStylesheet('/public/css/main.css');
+
+// include JS
+$this->headScript()->prependFile('/public/js/thickbox.js');
+$this->headScript()->prependFile('/public/js/Gettext.js');
+$this->headScript()->prependFile('/public/js/jquery.min.js');
+
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="icon" href="/img/favicon.ico" type="image/vnd.microsoft.icon" />
+    <?php echo $this->headLink() ?>
+    <?php echo $this->headTitle() ?>
+    <?php echo $this->headScript() ?>
+    <?php echo $this->headStyle() ?>
+    <script type="text/javascript">
+    
+    	$(document).ready ( function ()
+		{
+			$('.login_login').focus ();
+			
+			// error messages
+			if($('#errorMsg').length) {
+				
+				tb_show ( "System message", "#TB_inline?inlineId=errorMsg&amp;height=200&amp;width=350", false, true );
+			}
+    	} );
+    
+    </script>
+</head>
+<body>
+<?php
+	
+	echo "<div id=\"login\">\n";
+	
+	// content rendering
+	echo $this->layout()->content;
+	
+    // view messages
+    if (is_array($this->messages) && (count($this->messages) > 0)) {
+    	echo "<div id=\"errorMsg\"><ul class=\"errors\">";
+    	foreach ($this->messages as $m) {
+    		echo "<li>$m</li>\n";
+    	}
+    	echo "</ul></div>\n";
+    }
+    
+    // form error messages
+    if (isset($this->form)) {
+    	
+    	$eMessages = $this->form->getMessages();
+    	if (count($eMessages) > 0) {
+    		foreach ($eMessages as $key => $msg) {
+    			$elementName = $this->form->getElement($key)->getLabel();
+    			
+    			echo "<div id=\"errorMsg\"><ul class=\"errors\">$elementName";
+
+    			foreach ($msg as $m) {
+    				echo "<li>$m</li>\n";
+    			}
+    			
+    			echo "</ul></div>\n";
+    		}
+    	}
+    }
+    
+    echo "</div>\n";
+		
+?>
+</body>
+</html>

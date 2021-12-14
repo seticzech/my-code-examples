@@ -1,0 +1,44 @@
+<?php if ($this->pageCount) { ?>
+	 
+	<div class="paginationControl">
+	
+	<!-- First page link -->
+	<?php if (isset($this->previous)) { ?>
+		<a href="<?php echo $this->url(array('page' => $this->first, 'letter' => null)); ?>"><?php echo __('paginator:first')?></a> | 
+	<?php } else { ?>
+		<span class="disabled"><?php echo __('paginator:first')?></span> |
+	<?php } ?> 
+	
+	<!-- Previous page link --> 
+	<?php if (isset($this->previous)) { ?>
+		<a href="<?php echo $this->url(array('page' => $this->previous, 'letter' => null)); ?>">&lt; <?php echo __('paginator:previous')?></a> | 
+	<?php } else { ?>
+		<span class="disabled">&lt; <?php echo __('paginator:previous')?></span> | 
+	<?php } ?> 
+	
+	<!-- Numbered page links -->
+	<?php foreach ($this->pagesInRange as $page){ ?> 
+		<?php if ($page != $this->current) { ?>
+			<a href="<?php echo $this->url(array('page' => $page, 'letter' => null)); ?>" class="numbers"><?php echo  $page; ?></a> | 
+		<?php } else { ?>
+			<?php echo  '<strong>'.$page.'</strong>'; ?> | 
+		<?php } ?>
+	<?php } ?>
+	
+	<!-- Next page link --> 
+	<?php if (isset($this->next)) { ?> 
+		<a href="<?php echo $this->url(array('page' => $this->next, 'letter' => null)); ?>"><?php echo __('paginator:next')?> &gt;</a> |
+	<?php } else { ?> 
+		<span class="disabled"><?php echo __('paginator:next')?> &gt;</span> |
+	<?php } ?>
+	
+	<!-- Last page link -->
+	<?php if (isset($this->next)) { ?> 
+		<a href="<?php echo $this->url(array('page' => $this->last, 'letter' => null)); ?>"><?php echo __('paginator:last')?></a>
+	<?php } else { ?> 
+		<span class="disabled"><?php echo __('paginator:last')?></span>
+	<?php } ?>
+	
+	</div>
+	 
+<?php } ?>

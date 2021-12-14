@@ -1,0 +1,77 @@
+<?php
+
+	echo "<div id=\"rightBar\">
+		<div class=\"heading\">" . $this->selectedFolder->name . "</div>
+	</div>
+	<div class=\"controllBar\">
+    	<a href=\"#\" id=\"deleteButton\" class=\"delete\" controller=\"/wiki/docs/\" action=\"get\" title=\"" . __('title:wiki_docs_delete_selected') . "\">" . __('link:wiki_delete') . "</a>&nbsp;
+    	<a href=\"#\" id=\"restoreButton\" class=\"restore\" controller=\"/wiki/docs/\" action=\"get\" title=\"" . __('title:wiki_docs_restore_selected') . "\">" . __('link:wiki_restore') . "</a>&nbsp;|
+    	<span>" . __('info:wiki_display_mode') . "</span>
+    	<form style=\"display: inline\"><select class=\"displayMode\">
+    		<option value=\"" . urldecode($this->url(array('id' => $this->selectedFolder->id, 'view' => 'details'), 'wiki_docs_select')) . "\" selected=\"selected\">" . __('value:wiki_list_items') . "</option>
+    		<option value=\"" . urldecode($this->url(array('id' => $this->selectedFolder->id, 'view' => 'thumbnails'), 'wiki_docs_select')) . "\">" . __('value:wiki_thumbnails') . "</option>
+    	</select></form>
+	</div>
+	<table class=\"records docs\">
+	<tr class=\"thead\">
+		<th class=\"space\">&nbsp;</th>
+        <th class=\"col1\"><input type=\"checkbox\" id=\"checkedAll\" /></th>
+        <th>&nbsp;" . __('table:wiki_docs_name') . "</th>
+        <th class=\"col3\">" . __('table:wiki_docs_size') . "</th>
+        <th class=\"col5\">" . __('table:wiki_docs_deleted') . "</th>
+        <th class=\"space\">&nbsp;</th>
+    </tr>\n";
+				
+	// vypis obsahu slozky
+	if ($this->records->count()) {
+	
+		$i = 1;
+		foreach ($this->records as $item) {
+			
+			$trClass = ($i % 2) ? "" : " class=\"backing\"";
+			$name = (strlen($item->name) > 32) ? substr($item->name, 0, 29) . "..." : $item->name;
+			$size = ($item->size < 513) ? $item->size . " B" : number_format(($item->size / 1024), 0, '.', ' ') . " KB";
+			$size = ($item->entry_type == "d") ? "" : $size;
+
+			$userName = $item->deleted_by->first_name . " " . $item->deleted_by->last_name;  
+			$userLink = ($item->deleted_by->email == null) ? "<span class=\"profile\">" . $userName . "</span>" : "<a href=\"mailto:" . $item->deleted_by->email . "\" class=\"profile\" title=\"" . __('wiki_send_mail') . "\">" . $userName . "</a>";
+			$deleted = $item->deleted . " " . $userLink;
+			
+			$attrItem = "";
+			if ($item->entry_type == "d") {
+				$link = urldecode($this->url(array('id' => $item->id), 'wiki_docs_select'));
+				$classLink = "class=\"folder\"";
+				$attrItem = " item=\"" . $name . "\"";
+			}
+			elseif ($item->node_type->ext == "wiki") {
+				$link = urldecode($this->url(array('id' => $item->id), 'wiki_page_get'));
+				$classLink = "";
+			}
+			elseif ($item->node_type->ext == "gif" || $item->node_type->ext == "png" || $item->node_type->ext == "jpg" || $item->node_type->ext == "jpeg") {
+				$link = $item->real_name;
+				$classLink = " class=\"reload thickbox\"";
+			}
+			else {
+				$link = "#";
+				$classLink = "";
+			}
+			$bgImg = $item->node_type->icon_small;
+						
+			echo "<tr" . $trClass . ">
+				<td class=\"space\">&nbsp;</td>
+				<td class=\"col1\"><input type=\"checkbox\" class=\"checkbox\" value=\"" . $item->id . "\" /></td>
+				<td class=\"col2\" id=\"" . $item->id . "\" style=\"background: url(" . $bgImg . ") 2px center no-repeat\"><a href=\"/" . $link . "\"" . $classLink . $attrItem . " title=\"" . addslashes($item->name) . "\"><span class=\"itemName\">" . $name . "</span></a></td>
+				<td class=\"col3\">" . $size . "</td>
+				<td class=\"col5\">" . $deleted . "</td>
+				<td class=\"space\">&nbsp;</td>
+			</tr>\n";
+			
+			$i++;
+		}
+		echo "</table>\n";
+	}
+	else {
+		echo "</table>
+		<p class=\"norecords box-in\">" . __('info:wiki_no_records') . "</p>\n";
+	}
+	

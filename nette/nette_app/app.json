@@ -1,0 +1,7 @@
+{
+  "scripts": {
+    "dokku": {
+      "predeploy": "php create-config.php > app/config/config.local.neon && mkdir -p temp/sessions temp/proxies && sh createdb && sh console m:m -n"
+    }
+  }
+}

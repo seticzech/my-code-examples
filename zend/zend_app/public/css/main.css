@@ -1,0 +1,368 @@
+/* aPortal main.css */
+
+body, html {
+	height: 100%;
+}
+body {
+	margin: 0;
+	padding: 0 15px;
+	background: #fff;
+	color: #555;
+	font-family: Verdana CE, Verdana, Helvetica, sans-serif;
+	font-size: 75%;
+	text-align: center;
+}
+#page {
+    height: 100%;
+    text-align: left;
+}
+#main {
+	padding: 15px;
+	padding-bottom: 20px;
+	background-color: #eee;
+}
+p, ul, ol {
+	margin: 12px 0px;
+	padding: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+	margin: 12px 0px;
+	padding: 0;
+}
+a {
+	color: #2069b1;
+	text-decoration: underline;
+}
+a:hover {
+	color: #c00;
+	text-decoration: none;
+}
+form {
+	margin: 0;
+	padding: 0;
+}
+input, textarea, select, option {
+	font-family: Verdana CE, Verdana, Helvetica, sans-serif;
+	color: #444;
+}
+img {
+	border: none;
+}
+table {
+	margin: 0;
+	padding: 0;
+	border-collapse: collapse;
+	border-spacing: 0px;
+}
+td {
+	color: #555;
+	font-family: Verdana CE, Verdana, Helvetica, sans-serif;
+}
+ul li, ol li {
+	margin: 0;
+	padding: 0;
+}
+pre {
+	font-family: Courier New, courier;
+	font-size: 90%;
+}
+strong {
+	font-weight: bold;
+}
+hr {
+	margin: 3px 0;
+	padding: 0;
+	border: 0;
+	height: 1px;
+	background-color: #aaa;
+}
+.cleaner {
+	clear: both;
+	height: 1px;
+	font-size: 1px;
+}
+
+/* error messages */
+
+#errorMsg {
+	display: none;
+}
+ul.errors {
+	color: #c00;
+	list-style-type: none;
+}
+ul.errors li {
+	margin: 0px;
+	padding: 0 20px;
+	background: url('../img/bull_red_array.png') left top no-repeat;
+	font-size: 90%;
+}
+.content-error {
+	padding: 12px 0;
+}
+
+/* item tree */
+
+#treeCont {
+	padding: 20px 5px;
+}
+ul#itemTree, ul.itemTree {
+    margin: 0;
+    padding: 0;
+}
+ul.itemTree ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: none;
+}
+ul.itemTree li {
+	display: block;
+	padding: 3px 0;
+}
+.itemTree a {
+    color: #777;
+    text-decoration: none;
+}
+.itemTree a.status {
+	padding-right: 6px;
+	font-family: courier, monospace;
+}
+.itemTree a span.button {
+    color: #ff882f;
+    cursor: default;
+}
+.itemTree a span.itemName {
+	padding-left: 24px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+.itemTree a span {
+	background-position: left top;
+	background-repeat: no-repeat;
+}
+.itemTree a span.root {
+	background-image: url('../img/ico/ico_root.png');
+}
+.itemTree a span.group {
+	background-image: url('../img/ico/ico_group.png');
+}
+.itemTree a span.item {
+	background-image: url('../img/ico/ico_page.png');
+}
+.itemTree a span.unit {
+	background-image: url('../img/ico/ico_unit_small.png');
+}
+.itemTree a span.wrapper {
+	text-decoration: none;
+	cursor: default;
+}
+a.itemLink:hover {
+	color: #c00;
+}
+a.itemLink:hover span {
+	text-decoration: underline;
+}
+a.itemLink:hover .wrapper {
+	color: #777;
+	text-decoration: none;
+}
+.itemTree a span.current {
+	color: #36a400;
+	text-decoration: none;
+	cursor: default;
+}
+
+/* control bar */
+
+.controlBar {
+	position: relative;
+	margin: 0;
+	padding-top: 5px; 
+	padding-bottom: 5px; 
+	padding-left: 30px;
+	border-bottom: #c6c6c6 1px solid;
+	background: url('../img/ico/ico_small_arrow_down.png') 10px 5px no-repeat;
+	font-size: 90%;
+}
+.controlBar a {
+	color: #8c8c8c;
+	font-weight: bold;
+}
+.controlBar form {
+	display: inline;
+}
+.controlBar select {
+	padding: 0 3px;
+	padding-bottom: 2px;
+	font-size: 90%;
+}
+.controlBar option {
+	padding-left: 3px;
+	padding-right: 12px;
+}
+.controlBar span {
+	color: #777;
+}
+.controlBar span.blue {
+	color: #4d6e91;
+}
+
+/* common content */
+
+input.required {
+	background-color: #c00;	
+}
+#content-label {
+	margin-top: 12px;
+	margin-bottom: 6px;
+}
+#content-element {
+	margin-top: 6px;
+	margin-bottom: 12px;
+}
+.leftMargin {
+	margin-left: 24px;
+}
+
+/* list of records */
+
+table.records {
+	width: 100%;
+	border: 0;
+	border-spacing: 0; 
+	border-collapse: collapse; 
+}
+table.records tr {
+	
+}
+table.records tr.thead {
+	background-color: #e6e6e6;
+	border-top: #eee 1px solid;
+	border-bottom: #cecece 2px solid;
+	font-size: 90%;
+	font-weight: normal;
+}
+table.records th {
+	line-height: 20px;
+	font-weight: normal;
+}
+table.records tr.first th {
+	padding: 0;
+	height: 1px;
+	line-height: 1px;
+}
+table.records tr.backing {
+	background-color: #eee;
+}
+table.records tr.selected {
+	background-color: #ddf9dd !important;
+}
+table.records td {
+	padding-top: 4px;
+	padding-bottom: 3px;
+	font-size: 90%;
+	text-align: left;
+	vertical-align: middle;
+}
+table.records th.space {
+	width: 12px;
+}
+table.records th.col1 {
+	width: 28px;
+	padding-top: 4px;
+	padding-bottom: 2px;
+	line-height: 13px;
+	text-align: center;
+}
+table.records td.col1 {
+	width: 20px;
+	padding-top: 5px;
+	text-align: center;
+}
+table.records td.itemDeleted {
+	color: #999;
+}
+table.records td.deleted {
+	width: 25px;
+	background: url("../img/ico/ico_deleted.png") left center no-repeat;
+}
+table.records td.delete {
+	width: 25px;
+	background: url("../img/ico/ico_delete.png") left center no-repeat;
+}
+table.records td.restore {
+	width: 25px;
+	background: url("../img/ico/ico_restore.png") left center no-repeat;
+}
+table.records td.edit {
+	width: 25px;
+	background: url("../img/ico/ico_edit.png") left center no-repeat;
+}
+table.records td.properties, table.records .properties {
+	width: 30px;
+	background: url("../img/ico/ico_properties.png") left center no-repeat;
+}
+table.records td.edit a, table.records td.delete a, table.records td.restore a, table.records td.properties a, table.records .properties a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+}
+table.records .colHover {
+	background-color: #fee6e3 !important;
+	cursor: default;
+}
+table.records .norecords {
+	color: #c00;
+}
+
+/* modal dialog */
+
+.modalDialog {
+	display: none;
+}
+.TB_modal {
+	background-color: #efe;
+}
+.TB_modal textarea {
+	display: block;
+	width: 100%;
+	color: #333;
+	font-size: 100%;
+}
+.TB_modal .butSubmit {
+	margin-top: 8px;
+	padding: 2px 18px;
+	border: #bbb 1px solid;
+	background: #eee url('../img/bg_but_vista.gif') left center repeat-x;
+}
+.TB_modal .butSubmit:hover {
+	background: url('../img/bg_but_hover_vista.gif') left bottom repeat-x;
+}
+
+/* pagination control */
+
+#ipp {
+	text-align: right;
+}
+.paginationControl {
+	padding: 12px;
+	margin-left: 18px;
+	font-size: 90%;
+	text-align: left;
+}
+
+/* dnd table */
+
+tr.trDrag td {
+	background-color: #fee6e3 !important;
+}
+
+/* editable */
+
+.editable {
+	padding: 2px;
+	width: 460px;
+	color: #008f20 !important;	
+}

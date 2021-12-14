@@ -1,0 +1,76 @@
+<?php
+
+
+
+?>
+	<div class="cont">
+		<div id="rightBar">
+			<h1><?php echo $this->selectedFolder->name ?>&nbsp;</h1>
+	    	<div class="controllBar">
+				<a href="javascript://" id="deleteButton" class="delete" controller="/cms/docs/" action="get"><?php echo __('button:delete') ?></a>&nbsp;
+        		<a href="javascript://" id="restoreButton" class="restore" controller="/cms/docs/" action="get"><?php echo __('button:restore') ?></a>
+			</div>
+	    </div>
+		<div class="box-in">
+<?php
+
+	echo "<table class=\"records docs\">
+	<tr class=\"thead\">
+        <th class=\"col1\"><input type=\"checkbox\" id=\"checkedAll\" /></th>
+        <th>&nbsp;" . __('table:docs_name') . "</th>
+        <th class=\"col3\">" . __('table:docs_deleted') . "</th>
+        <th class=\"col4\">&nbsp;</th>
+    </tr>\n";
+				
+	// vypis obsahu kose
+	if ($this->records->count()) {
+	
+		$i = 1;
+		foreach ($this->records as $item) {
+			
+			$backing = ($i % 2) ? "" : " class=\"backing\"";
+			$name = (strlen($item->name) > 40) ? substr($item->name, 0, 38) . "..." : $item->name;
+			
+			if ($item->type == "d") {
+				
+				echo "<tr" . $backing . ">
+					<td class=\"col1\"><input type=\"checkbox\" class=\"checkbox\" itemType=\"folder\" value=\"" . $item->id . "\" /></td>
+					<td class=\"col2 folder\"><span class=\"itemName\">" . $name . "</span></td>
+					<td class=\"col3\">" . $item->deleted . "</td>
+					<td class=\"col4\">&nbsp;</td>
+				</tr>\n";
+			
+			} else {
+				
+				$ext = $item->path_info->extension;
+				$exts = array('doc', 'xls', 'pdf', 'txt', 'ppt', 'jpg', 'jpeg', 'gif', 'png');
+			
+				if ($ext) {
+					$extension = (in_array($ext, $exts)) ? $ext : "unknown";
+					if ($ext == "zip" || $ext == "7z" || $ext == "rar") $extension = "archive";
+					if ($ext == "jpg" || $ext == "jpeg" || $ext == "gif" || $ext == "png" || $ext == "tif") $extension = "image";
+				} else {
+					$extension = "unknown";
+				}
+				$size = number_format($item->size < 513) ? $item->size . " B" : number_format(($item->size / 1024), 0, '.', ' ') . " KB";
+				
+				echo "<tr" . $backing . ">
+					<td class=\"col1\"><input type=\"checkbox\" class=\"checkbox\" itemType=\"file\" value=\"" . $item->id . "\" /></td>
+					<td class=\"col2 " . $extension . "\"><span id=\"" . $item->id . "\" class=\"itemName\">" . $name . "<br />" . $size . "&nbsp;</span></td>
+					<td class=\"col3\">" . $item->deleted . "<br />" . $item->editor->first_name . " " . $item->editor->last_name . "</td>
+					<td class=\"col4\">&nbsp;</td>
+				</tr>\n";
+			}
+			$i++;
+		}
+		echo "</table>\n";
+	}
+	else {
+		echo "</table>
+		<p class=\"norecords leftMargin\">" . __('info:no_files') . "</p>\n";
+	}
+	
+?>
+		</div>
+	</div>
+	

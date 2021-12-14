@@ -1,0 +1,112 @@
+<?php
+
+/**
+ * aPortal - zakladni layout pro aplikaci.
+ * 
+ * @author Jiří Pazderník <pazdernik.j@atlas.cz>
+ */
+
+// vložení JS
+$this->headScript()->prependFile('/public/js/utils.core.js');
+$this->headScript()->prependFile('/public/js/jquery.tablednd.js');
+$this->headScript()->prependFile('/public/js/jquery.thickbox.js');
+$this->headScript()->prependFile('/public/js/jquery.form.js');
+$this->headScript()->prependFile('/public/js/jquery.splitter.js');
+$this->headScript()->prependFile('/public/js/jquery.json.min.js');
+$this->headScript()->prependFile('/public/js/jquery.cookie.js');
+$this->headScript()->prependFile('/public/js/jquery.ui.min.js');
+$this->headScript()->prependFile('/public/js/jquery.min.js');
+$this->headScript()->prependFile('/public/js/Gettext.js');
+
+// vložení CSS
+$this->headLink()->prependStylesheet('/public/css/defaultForms.css', 'screen,projection');
+$this->headLink()->prependStylesheet('/public/css/thickbox/thickbox.css', 'screen,projection');
+$this->headLink()->prependStylesheet('/public/css/default.css', 'screen,projection');
+$this->headLink()->prependStylesheet('/public/css/ui.css', 'screen,projection');
+$this->headLink()->prependStylesheet('/public/css/main.css', 'screen,projection');
+
+include_once ("common.php");
+include ("pageTitle.php");
+
+$createdSubmenu = null;
+$menuTop = null;
+
+// create menus
+foreach ($menu as $group) {
+	
+	switch ($group->name) {
+		case "main": $menuMain = createMenuTabs ($group, $createdSubmenu); break;
+		case "top": $menuTop = createMenuTop ($group); break;
+		default: echo '';
+	}
+}
+
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico" />
+	<link rel="gettext" type="application/x-po" href="/public/locale/cs/default.po" />
+    <?php echo $this->headLink() ?>
+    <?php echo $this->headTitle() ?>
+    <?php echo $this->headScript() ?>
+    <?php echo $this->headStyle() ?>
+
+</head>
+<body>
+<div id="page">
+<div id="header">
+<?php
+
+	$projectName = ($this->projectName == null) ? "" : $this->projectName;
+
+	echo "<div id=\"logo\" class=\"" . $unit->name . "\"></div>\n";
+
+	if ($menuTop) echo $menuTop; else echo "<div id=\"topMenu\">&nbsp;</div>";
+
+	echo "<div id=\"user\"><span>" . $this->userIdentity->first_name . " " . $this->userIdentity->last_name . "</span></div>\n";
+	
+	if ($projectName) {
+		echo "<div id=\"projectName\"><span style=\"color:#333; font-size:90%;\">project:</span>&nbsp; " . $projectName . "</div>\n";
+	}
+
+	echo $menuMain;
+	
+	echo "<div id=\"menuBar\">
+		" . $createdSubmenu . "
+		<form id=\"searchForm\" action=\"#\" method=\"post\" onsubmit=\"return false\">
+			<select id=\"searchType\" name=\"searchType\">
+				<option value=\"\">Adresář</option>
+				<option value=\"\">Dokumenty</option>
+			</select>
+			<input type=\"text\" id=\"searchStr\" name=\"searchStr\" value=\"\" />
+			<input type=\"submit\" id=\"searchBut\" value=\"Najdi\" />
+		</form>
+	</div>\n";
+	
+?>
+</div>
+<!-- end of header -->
+<?php
+
+    // view messages
+    if (is_array($this->messages) && (count($this->messages) > 0)) {
+    	echo "<div id=\"errorMsg\"><ul class=\"errors\">";
+    	foreach ($this->messages as $m) {
+    		echo "<li>$m</li>\n";
+    	}
+    	echo "</ul></div>\n";
+    }
+	
+	// content rendering
+	echo $this->layout()->content;
+	
+?>
+<div id="footer">
+</div>
+<!-- end of footer -->
+</div>
+<!-- end of page -->
+</body>
+</html>

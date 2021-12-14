@@ -1,0 +1,5 @@
+#!/bin/sh
+
+mkdir -p data/db
+touch data/db/props.s3db
+chmod 664 data/db/props.s3db

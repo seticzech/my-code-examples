@@ -1,0 +1,349 @@
+/* aPortal layout: default.phtml */
+
+/* header */
+
+#header {
+	position: relative;
+	min-width: 600px;
+}
+#topMenu {
+	padding-right: 15px;
+	text-align: right;
+	color: #2d96cf;
+}
+#logo {
+	position: absolute;
+	left: 0;
+	top: 10px;
+	width: 200px;
+	height: 45px;
+}
+#logo.default {
+	background: url('../img/logo_aliacom_portal.gif') left top no-repeat;
+}
+#logo.projects {
+	background: url('../img/logo_projects.gif') left top no-repeat;
+}
+#logo.business {
+	background: url('../img/logo_business.gif') left top no-repeat;
+}
+#logo.appbuilder {
+	background: url('../img/logo_appbuilder.gif') left top no-repeat;
+}
+#logo.cmsbuilder {
+	background: url('../img/logo_cmsbuilder.gif') left top no-repeat;
+}
+#logo.admin {
+	background: url('../img/logo_admin.gif') left top no-repeat;
+}
+#user {
+	padding-top: 12px;
+	padding-right: 15px;
+	margin-bottom: 20px;
+	text-align: right;
+	color: #222;
+	font-weight: bold;
+}
+#user span {
+	padding-left: 24px;
+	padding-top: 3px;
+	background: url('../img/ico/ico_user_male.gif') left bottom no-repeat;
+}	
+#projectName {
+	float: right;
+	margin-right: 16px;
+	padding-top: 3px;
+	color:#ff882f;
+	font-weight: bold;
+}
+#mainMenu {
+	float: left;
+}
+#mainMenu td {
+	padding: 0;
+	font-weight: bold;
+	white-space: nowrap;
+}
+#mainMenu td.tab {
+	background-color: #fff;
+}
+#mainMenu td.disabled a {
+	color: #aaa;
+	cursor: default;
+}
+#mainMenu td.current {
+	background-color: #ff882f;
+}
+#mainMenu td.space {
+	padding: 0;
+	width: 2px;
+}
+.tabLeftCorner {
+	height: 3px;
+	background: url('../img/tab_left_corner.gif') left top no-repeat;
+}
+.tabLeftCornerCurrent {
+	height: 3px;
+	background: url('../img/tab_left_corner_current.gif') left top no-repeat;
+}
+.tabRightCorner {
+	padding: 0 3px;
+	height: 3px;
+	background: url('../img/tab_right_corner.gif') right top no-repeat;
+}
+.tabRightCornerCurrent {
+	padding: 0 3px;
+	height: 3px;
+	background: url('../img/tab_right_corner_current.gif') right top no-repeat;
+}
+.tab .tabTop {
+	border-top: #b0b0b0 1px solid;
+}
+.current .tabTop {
+	border-top: #ff882f 1px solid;
+}
+.tabText {
+	padding-top: 2px;
+	border-left: #b0b0b0 1px solid;
+	border-right: #b0b0b0 1px solid;
+}
+.tabText a {
+	display: block;
+	padding: 0 18px;
+	line-height: 18px;
+	color: #777;
+	text-decoration: none;
+}
+.tabText a:hover {
+	color: #444;
+	text-decoration: none;
+}
+.tabTextCurrent {
+	padding-top: 2px;
+}
+.tabTextCurrent a {
+	display: block;
+	padding: 0 18px;
+	line-height: 18px;
+	color: #fff;
+	text-decoration: none;
+}
+.tabTextCurrent a:hover {
+	color: #fff;
+	text-decoration: none;
+	cursor: default;
+}
+#menuBar {
+	clear: both;
+	position: relative;
+	padding-left: 18px;
+	padding-right: 300px;
+	border-bottom: #fff 1px solid;
+	min-height: 29px;
+	_height: 29px;
+	background: #ff882f url('../img/tab_right_corner_current.gif') right top no-repeat;
+}
+#submenu {
+	padding-top: 7px;
+	padding-bottom: 5px;
+	color: #fff;
+}
+#submenu a {
+	color: #fff;
+	font-weight: normal;
+}
+#submenu a.current {
+	color: #ffede0;
+	font-weight: bold;
+	text-decoration: none;
+	cursor: default;
+}
+#searchForm {
+	position: absolute;
+    right: 15px;
+    top: 5px;
+    text-align: right;
+}
+#searchType, #searchStr {
+	padding-top: 1px;
+	padding-bottom: 1px;
+	border: #ddd 1px solid;
+    background-color: #fff;
+    color: #222;
+    font-size: 90%;
+}
+#searchType option {
+	font-size: 100%;
+}
+#searchStr {
+	border: #eee 2px solid;
+	width: 110px;
+	font-size: 90%;
+}
+#searchBut {
+	padding: 1px 10px;
+	border: #bbb 1px solid;
+	background: #eee url('../img/bg_but_vista.gif') left center repeat-x;
+	font-size: 90%;
+}
+#searchBut:hover {
+	border: #bbb 1px solid;
+	background: url('../img/bg_but_hover_vista.gif') left bottom repeat-x;
+}
+
+/* footer */
+
+#footer {
+	padding-top: 15px;
+    border-top: #ccc 1px solid;
+    color: #757575;
+    font-size: 90%;
+}
+.copy {
+	padding-left: 15px;
+	padding-bottom: 24px;
+}
+
+/* form filter */
+
+form.filter {
+	width: 180px;
+}
+form.filter label {
+	display: block;
+	margin-top: 6px;
+	padding-bottom: 2px;
+	color: #7f907f;
+}
+form.filter label.checkbox, form.filter label.radio {
+	display: inline;
+}
+form.filter select, form.filter input, form.filter textarea {
+	padding: 3px 0;
+	width: 100%;
+	border: #a2b1a2 1px solid;;
+	background-color: #fff;
+	color: #333;
+	font-size: 90%;
+}
+form.filter select {
+	padding: 0;
+}
+form.filter option {
+	padding-top: 3px;
+	padding-bottom: 1px;
+}
+form.filter textarea {
+	font-family: Verdana CE, Verdana, Helvetica, sans-serif;
+}
+form.filter #butReset, form.filter #butSubmit, form.filter #butCancel, form.filter #butClear {
+	margin-top: 8px;
+	padding: 3px 30px;
+	border: 0;
+	color: #fff;
+	background-color: #7c907c;
+	font-size: 100%;
+}
+form.filter #butReset:hover, form.filter #butSubmit:hover, form.filter #butCancel:hover, form.filter #butClear:hover {
+	background-color: #637363;
+}
+form .formHint {
+	color: #7f907f;
+	font-size: 90%;
+}
+
+/* user form */
+
+.userForm {
+	margin: 24px;
+}
+.userForm td {
+	padding: 4px 0;
+}
+.userForm td.username {
+	padding-right: 24px;
+}
+.userForm td.label {
+	padding-right: 12px;
+}
+.userForm td.element input {
+	width: 200px;
+	padding: 3px 2px;
+}
+.userForm td.separator {
+	height: 18px;
+}
+.userForm #butSubmit {
+	margin-top: 8px;
+	border: 0;
+	width: 204px;
+	height: 25px;
+	color: #666;
+	background: url('../img/but_form_submit.gif') no-repeat;
+}
+.userForm #butSubmit:hover {
+	background: url('../img/but_form_submit_hover.gif') no-repeat;
+}
+
+/* view data */
+
+table.view {
+	margin: 15px;
+}
+table.view td {
+	padding-top: 3px;
+	padding-bottom: 3px;
+	color: #c00;
+	font-size: 90%;
+	vertical-align: top;
+}
+table.view td.label {
+	padding-right: 15px;
+}
+table.view .label {
+	color: #7f907f;
+}
+
+/* list of records */
+
+/* orders --------------------------------------------- */
+.orders .col1 { width: 30px; }
+.orders .col2 {  }
+.orders .col3 { width: 100px; }
+.orders .col4 { width: 130px; }
+.orders td.col3 { color: #ce0000; }
+
+/* partners -------------------------------------------- */
+.partners .col1 { width: 30px; }
+.partners .col2 { width: 50px; text-align: right; }
+.partners .col3 {  }
+.partners .col4 { width: 200px; }
+
+/* addresses ------------------------------------------- */
+.address .col2 {  }
+.address .col3 { width: 50px; }
+.address .col4 { width: 150px; }
+
+/* menu items ------------------------------------------ */
+.menus .col1 { width: 30px; }
+.menus .col2 { width: 190px; }
+.menus .col3 {  }
+.menus .col4 { width: 90px; }
+.menus .col5, .menus .col6, .menus .col7, .menus .col8 { width: 30px; text-align: center; }
+
+/* sys_translate items --------------------------------- */
+.translate .col1 { width: 12px !important; }
+.translate .col2 { padding-right: 32px; }
+.translate .col3 { width: 110px; }
+.translate .colLocale { width: 220px; }
+
+/* sys_route items ------------------------------------- */
+.route .col1 { width: 12px !important; }
+.route .col2 { width: 190px; }
+.route .col3 { width: 180px; }
+.route .col4 { width: 100px; }
+.route .col5 { width: 40px; }
+.route .col6 { width: 40px; }
+.route .colLocale { width: 25px; }
+.route .col7 {  }
+

@@ -1,0 +1,57 @@
+<?php
+
+	// vlozeni CSS
+	$this->headLink()->appendStylesheet('/public/css/dialogForms.css', 'screen,projection');
+	
+	// formular
+	if (isset ($this->form)) {
+	
+		echo "<form action=\"" . $this->form->getAction() . "\" method=\"" . $this->form->getMethod() . "\" class=\"dialog\">
+		<table cellspacing=\"6\" class=\"docs\">
+		<tr>
+			<td>" . $this->form->name . "</td>
+		</tr>
+		<tr>
+			<td>" . $this->form->description . "</td>
+		</tr>
+		<tr>
+			<td class=\"butSubmit\">" . $this->form->callback . $this->form->data . $this->form->butSubmit . "</td>
+		</tr>
+		</table>
+		</form>\n";
+	}
+	
+	$size = ($this->record->node_info->size < 513) ? number_format($this->record->node_info->size, 0, '.', ' ') . " B" : number_format(($this->record->node_info->size / 1024), 0, '.', ' ') . " KB";
+	
+	echo "<h3>" . __('caption:wiki_other_properties') . "</h3>
+	<table cellspacing=\"6\">
+	<tr>
+		<td>" . __('info:wiki_creation_data') . ":</td>
+		<td>" . $this->record->created . "</td>
+	</tr>
+	<tr>
+		<td>" . __('info:wiki_created_by') . ":</td>
+		<td>" . $this->record->created_by->first_name . " " . $this->record->created_by->last_name . "</td>
+	</tr>
+	<tr>
+		<td>" . __('info:wiki_last_changed') . ":</td>
+		<td>" . $this->record->modified . "</td>
+	</tr>
+	<tr>
+		<td>" . __('info:wiki_last_changed_by') . ":</td>
+		<td>" . $this->record->modified_by->first_name . " " . $this->record->modified_by->last_name . "</td>
+	</tr>
+	<tr>
+		<td>" . __('info:wiki_size') . ":</td>
+		<td>" . $size . "</td>
+	</tr>
+	<tr>
+		<td>" . __('info:wiki_folders_count') . ":</td>
+		<td>" . $this->record->node_info->folders_count . "</td>
+	</tr>
+	<tr>
+		<td>" . __('info:wiki_files_count') . ":</td>
+		<td>" . $this->record->node_info->files_count . "</td>
+	</tr>
+	</table>\n";
+	

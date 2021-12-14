@@ -1,0 +1,13 @@
+.DS_Store
+.env
+
+# IDE metadata
+.idea/
+nbproject/
+*.komodoproject
+
+# Configuration
+*.local.neon
+
+# Package managers
+/vendor

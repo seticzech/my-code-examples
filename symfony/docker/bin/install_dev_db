@@ -1,0 +1,9 @@
+#!/bin/sh
+
+docker exec -it bb3-php bin/console app:cluster:init devbb3password postgres
+docker exec -it bb3-php bin/console app:db:create bb3_development postgres
+docker exec -it bb3-php bin/migrations migrate erp
+docker exec -it bb3-php bin/migrations migrate sys
+docker exec -it bb3-php bin/console app:db:build
+docker exec -it bb3-php bin/console app:tenant:create 'BB 3 devel' bb3dev --id 12345678-1234-1234-1234-123456789abc
+docker exec -it bb3-php bin/console oauth2:client:create -t 12345678-1234-1234-1234-123456789abc --name Dev

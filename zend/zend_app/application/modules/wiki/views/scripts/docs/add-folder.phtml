@@ -1,0 +1,22 @@
+<?php
+
+	// vlozeni CSS
+	$this->headLink()->appendStylesheet('/public/css/dialogForms.css', 'screen,projection');
+	
+	// formular
+	if (isset ($this->form)) {
+	
+		echo "<form action=\"" . $this->form->getAction() . "\" method=\"" . $this->form->getMethod() . "\" class=\"dialog\">
+		<table cellspacing=\"6\" class=\"docs\">
+		<tr>
+			<td>" . $this->form->name . "</td>
+		</tr>
+		<tr>
+			<td>" . $this->form->description . "</td>
+		</tr>
+		<tr>
+			<td class=\"butSubmit\">" . $this->form->callback . $this->form->id_parent . $this->form->butSubmit . "</td>
+		</tr>
+		</table>
+		</form>\n";
+	}

@@ -1,0 +1,75 @@
+<?php
+
+	// vlozeni CSS
+	$this->headLink()->appendStylesheet('/public/css/dialogForms.css', 'screen,projection');
+	
+	// formular
+	if (isset ($this->form)) {
+	
+		echo "<form action=\"" . $this->form->getAction() . "\" method=\"" . $this->form->getMethod() . "\" class=\"dialog\">
+		<table cellspacing=\"6\" class=\"docs\">
+		<tr>
+			<td>" . $this->form->name . "</td>
+		</tr>
+		<tr>
+			<td>" . $this->form->description . "</td>
+		</tr>
+		<tr>
+			<td class=\"butSubmit\">" . $this->form->callback . $this->form->name_old . $this->form->type . $this->form->id_parent . $this->form->butSubmit . "</td>
+		</tr>
+		</table>
+		</form>\n";
+	}
+	
+	$size = ($this->itemInfo->size < 513) ? number_format($this->itemInfo->size, 0, '.', ' ') . " B" : number_format(($this->itemInfo->size / 1024), 0, '.', ' ') . " KB";
+	
+	echo "<h3>Ostatní vlastnosti</h3>
+	<table cellspacing=\"6\">
+	<tr>
+		<td>Datum vytvoření:</td>
+		<td>" . $this->itemInfo->created . "</td>
+	</tr>
+	<tr>
+		<td>Naposledy změněno:</td>
+		<td>" . $this->itemInfo->modified . "</td>
+	</tr>
+	<tr>
+		<td>Změnu provedl:</td>
+		<td>" . $this->itemInfo->editor->first_name . " " . $this->itemInfo->editor->last_name . "</td>
+	</tr>
+	<tr>
+		<td>Celková velikost:</td>
+		<td>" . $size . "</td>
+	</tr>\n";
+
+	if ($this->itemInfo->type == Core_Model_Vfs_Inodes::INODE_TYPE_DIRECTORY) {
+		
+		echo "<tr>
+			<td>Počet složek:</td>
+			<td>" . $this->itemInfo->folders_count . "</td>
+		</tr>
+		<tr>
+			<td>Počet souborů:</td>
+			<td>" . $this->itemInfo->files_count . "</td>
+		</tr>\n";
+	}
+	elseif (!is_null($this->itemInfo->width)) {
+		
+		echo "<tr>
+			<td>Typ souboru:</td>
+			<td>obrázek " . $this->itemInfo->path_info['extension'] . "</td>
+		</tr>
+		<tr>
+			<td>Rozměry (š x v) px:</td>
+			<td>" . $this->itemInfo->width . " x " . $this->itemInfo->height . "</td>
+		</tr>\n";
+	}
+	else {
+		
+		echo "<tr>
+			<td>Typ souboru:</td>
+			<td>dokument " . $this->itemInfo->path_info['extension'] . "</td>
+		</tr>\n";
+	}
+
+	echo "</table>\n";

@@ -1,0 +1,74 @@
+<?php
+
+	$params_add = array('thickbox' => '?TB_iframe=true&amp;height=500&amp;width=700');
+
+    echo "<div id=\"main\"><div id=\"main-in\">
+	<div id=\"MyContent\">
+	    <div id=\"mainBar\">
+	    	<div class=\"heading\">" . __('caption:wiki_accounts') . "</div>
+	    	<a href=\"" . urldecode($this->url($params_add, 'wiki_account_add')) . "\" id=\"butBar1\" class=\"thickbox button\" title=\"" . __('title:wiki_account_add') . "\" noclose=\"true\" cconfirm=\"dialogCloseConfirm\">" . __('link:wiki_account_add') . "</a>
+	    </div>
+	    <div class=\"controllBar\">
+	    	<a href=\"#\" id=\"deleteButton\" class=\"delete\" controller=\"/wiki/account/\" action=\"list\" title=\"" . __('title:wiki_account_delete_selected') . "\">" . __('link:wiki_delete') . "</a>&nbsp;
+	    	<a href=\"#\" id=\"restoreButton\" class=\"restore\" controller=\"/wiki/account/\" action=\"list\" title=\"" . __('title:wiki_account_restore_selected') . "\">" . __('link:wiki_restore') . "</a>
+	    </div>
+	    <div id=\"cont\">
+			<table class=\"records accounts\">
+			<tr class=\"thead\">
+				<th class=\"space\">&nbsp;</th>
+		        <th class=\"col1\"><input type=\"checkbox\" id=\"checkedAll\" /></th>
+		        <th colspan=\"3\">" . __('table:wiki_account_user') . "</th>
+		        <th class=\"col3\">" . __('table:wiki_account_login') . "</th>
+		        <th class=\"col4\">" . __('table:wiki_account_modified') . "</th>
+		        <th class=\"space\">&nbsp;</th>
+		    </tr>\n";
+						
+			// news list
+			if ($this->records->count()) {
+			
+				$i = 1;
+				foreach ($this->records as $item) {
+					$i++;
+					$backing = ($i % 2) ? "" : " class=\"backing\"";
+					$itemDeleted = ($item->enabled) ? "" : " itemDeleted";
+					$lastChange = ($item->last_change == null) ? "-" : $item->last_change;
+				
+					$params_edit = array('id' => $item->id, 'thickbox' => '?TB_iframe=true&amp;height=600&amp;width=600');
+					$params_delete = array('id' => $item->id);
+					
+					echo "<tr" . $backing . ">
+						<td class=\"space\">&nbsp;</td>
+			        	<td class=\"col1\"><input type=\"checkbox\" class=\"checkbox\" value=\"" . $item->id . "\" /></td>\n";
+			        	
+						if ($item->enabled) {
+							echo "<td class=\"edit\"><a href=\"" . urldecode($this->url($params_edit, 'wiki_account_edit')) . "\" title=\"" . __('title:wiki_item_edit') . "\" class=\"thickbox\" noclose=\"true\" cconfirm=\"dialogCloseConfirm\">&nbsp;</a></td>
+			        		<td class=\"delete\"><a href=\"" . urldecode($this->url($params_delete, 'wiki_account_delete')) . "\" title=\"" . __('title:wiki_item_delete') . "\" class=\"delete\">&nbsp;</a></td>\n";
+						}
+						else {
+							echo "<td class=\"deleted\">&nbsp;</td>
+			        		<td class=\"restore\"><a href=\"" . urldecode($this->url($params_delete, 'wiki_account_restore')) . "\" title=\"" . __('title:wiki_item_restore') . "\" class=\"restore\">&nbsp;</a></td>\n";
+						}
+						
+			        	echo "<td class=\"col2" . $itemDeleted . "\">" . $item->first_name . " " . $item->last_name . "</td>
+			        	<td class=\"col3" . $itemDeleted . "\">" . $item->login . "</td>
+			        	<td class=\"col4" . $itemDeleted . "\">" . $lastChange . "</td>
+			        	<td class=\"space\">&nbsp;</td>
+			        </tr>\n";
+				}
+				echo "</table>\n";
+			}
+			else {
+				echo "</table>
+				<p class=\"box-in norecords\">" . __('info:wiki_no_records') . "</p>\n";
+			}
+			
+		echo "</div>\n";
+		
+		if ($this->records->getTotalItemCount() > $this->records->getItemCountPerPage()) {
+			
+			echo $this->paginationControl ($this->records);
+		}
+	
+	echo "</div>
+	</div></div>\n";
+	

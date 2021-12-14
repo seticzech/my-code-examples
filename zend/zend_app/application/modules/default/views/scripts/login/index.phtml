@@ -1,0 +1,16 @@
+<div id="logo"></div>
+<div class="loginTitle"><?php echo __('unit:login') ?></div>
+<div class="loginBox">
+<?php 
+
+	echo "<form action=\"" . $this->form->getAction() . "\" method=\"" . $this->form->getMethod() . "\">
+	" . $this->form->login_login . "
+	<div class=\"cleaner\"></div>
+	" . $this->form->login_password . "
+	<div class=\"cleaner\"></div>
+	" . $this->form->butLogin . "
+	<div class=\"cleaner\"></div>
+	</form>\n";
+
+?>
+</div>

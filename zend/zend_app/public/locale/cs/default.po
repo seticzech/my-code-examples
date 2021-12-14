@@ -1,0 +1,94 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Intranet JS\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-11-23 13:52+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: "
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Czech\n"
+"X-Poedit-Country: CZECH REPUBLIC\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: gt.gettext;gt.ngettext:1,2\n"
+"X-Poedit-Basepath: ./\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Poedit-SearchPath-0: ../../js\n"
+
+#: ../../js/dialog.js:146
+msgid "Enter at least the first few characters of the name of the client."
+msgstr "Zadejte alespoň začátek jména klienta."
+
+#: ../../js/utils.core.js:185
+#: ../../js/utils.core.js:814
+msgid "System message"
+msgstr "Zpráva systému"
+
+#: ../../js/utils.core.js:417
+msgid "You are not allowed to process this action."
+msgstr "Nemáte oprávnění k provedení této akce."
+
+#: ../../js/utils.core.js:618
+#: ../../js/utils.core.js:626
+msgid "Do you really want to proceed with the delete action?"
+msgstr "Skutečně chcete provést akci Zrušit?"
+
+#: ../../js/utils.core.js:622
+msgid "No items selected."
+msgstr "Nebyly vybrány žádné položky"
+
+#: ../../js/utils.core.js:672
+#: ../../js/utils.core.js:680
+msgid "Do you really want to proceed with the restore action?"
+msgstr "Skutečně chcete provést akci Obnovit?"
+
+#: ../../js/vfs.utils.js:195
+msgid "Do you really want to proceed with the revert action?"
+msgstr "Skutečně chcete provést akci Revert?"
+
+#: ../../js/vfs.utils.js:291
+msgid "Upload files"
+msgstr "Nahrát soubory"
+
+#: ../../js/vfs.utils.js:314
+msgid "Cancel uploads"
+msgstr "Zrušit nahrávání"
+
+#: ../../js/vfs.utils.js:317
+#: ../../js/vfs.utils.js:409
+msgid "Do you want to cancel the upload?"
+msgstr "Skutečně chcete ukončit nahrávání souborů?"
+
+#: ../../js/vfs.utils.js:322
+#: ../../js/vfs.utils.js:413
+msgid "Upload canceled"
+msgstr "Nahrávání bylo zrušeno."
+
+#: ../../js/vfs.utils.js:343
+msgid "pending"
+msgstr "nahrávám"
+
+#: ../../js/vfs.utils.js:343
+msgid "Uploading"
+msgstr "Nahrávám"
+
+#: ../../js/vfs.utils.js:369
+msgid "complete"
+msgstr "dokončeno"
+
+#: ../../js/vfs.utils.js:385
+msgid "Upload complete"
+msgstr "Nahrávání bylo dokončeno."
+
+#: ../../js/vfs.utils.js:385
+msgid "file uploaded"
+msgid_plural "files uploaded"
+msgstr[0] "nahraný soubor"
+msgstr[1] "nahrané soubory"
+msgstr[2] "nahraných souborů"
+
+#~ msgid "Hello world"
+#~ msgstr "Ahoj světe jak se máš"
+

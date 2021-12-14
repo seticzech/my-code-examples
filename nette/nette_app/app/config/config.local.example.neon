@@ -1,0 +1,9 @@
+parameters:
+    dbal:
+        user: null
+        password: null
+
+services:
+    nette.latteFactory:
+        setup:
+            - setAutoRefresh(true)

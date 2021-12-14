@@ -1,0 +1,243 @@
+<?php
+/**
+ * aPortal - layout for the dialog window.
+ * 
+ * @author Jiøí Pazderník <pazdernik.j@atlas.cz>
+*/
+
+// CSS
+$this->headLink()->prependStylesheet('/public/css/datepick.css', 'screen,projection');
+$this->headLink()->prependStylesheet('/public/css/dialogForms.css', 'screen,projection');
+$this->headLink()->prependStylesheet('/public/css/dialog.css', 'screen,projection');
+
+// JS
+$this->headScript()->prependFile('/public/js/utils.dialog.js');
+$this->headScript()->prependFile('/public/js/jquery.datepick-cs.js');
+$this->headScript()->prependFile('/public/js/jquery.datepick.js');
+$this->headScript()->prependFile('/public/js/jquery.json.min.js');
+$this->headScript()->prependFile('/public/js/jquery.min.js');
+$this->headScript()->prependFile('/public/js/Gettext.js');
+
+function createMenuTabs ($thisMenu)
+{
+	$i = 0;
+	$createdMenu = "<table><tr>\n";
+	
+    foreach ($thisMenu as $item) {
+    	
+    	$createdMenu .= ($i) ? "\n\t<td class=\"space\"></td>" : "\n\t<td class=\"first\">&nbsp;&nbsp;</td>";
+
+    	$labelMenu = "menu:" . $item->id;
+    	$labelTitle = "menu:" . $item->id . '_title';
+    	$itemName = ___($labelMenu);
+    	$title = ___($labelTitle);
+    	$target = ($item->target) ?  "target=\"" . $item->target . "\"" : "";
+    	
+    	if ($item->visible) {
+    	
+	    	if ($item->selected) {
+	    		$createdMenu .= "\n\t<td class=\"tab current\">\n\t\t<div class=\"tabLeftCornerCurrent\"><div class=\"tabRightCornerCurrent\"><div class=\"tabTop\"></div></div></div>\n\t\t<div class=\"tabTextCurrent\"><a href=\"javascript://\">" . $itemName . "</a></div>\n\t</td>\n";
+	    	}
+	    	else {
+	    		$disabled = ($item->enabled) ? "" : " disabled";
+	    		$link = ($item->enabled) ? $item->url : "javascript://";
+	    		$createdMenu .= "\n\t<td class=\"tab" . $disabled . "\">\n\t\t<div class=\"tabLeftCorner\"><div class=\"tabRightCorner\"><div class=\"tabTop\"></div></div></div>\n\t\t<div class=\"tabText\"><a href=\"" . $link . "\"" . $target . " title=\"" . $title . "\">" . $itemName . "</a></div>\n\t</td>\n";
+	    	}
+    	}
+    	$i++;
+    	if ($i == $thisMenu->count()) $createdMenu .= "\n\t<td class=\"space\" style=\"width: 100%;\">&nbsp;</td>";
+    }
+	$createdMenu .= "\n</tr></table>\n";
+    
+    return $createdMenu;
+}
+
+function createMenuTabsStructure ($thisMenu)
+{
+	$i = 0;
+	$createdMenu = "<table class=\"menuTabs\"><tr>\n";
+	
+    foreach ($thisMenu as $item) {
+    	
+    	$createdMenu .= ($i) ? "\n\t<td class=\"space\"></td>" : "\n\t<td class=\"first\">&nbsp;&nbsp;</td>";
+    	
+    	$itemName = $item->name;
+    	$title = $item->name;
+    	
+    	if ($item->selected) {
+    		$createdMenu .= "\n\t<td class=\"tab current\">\n\t\t<div class=\"tabLeftCornerCurrent\"><div class=\"tabRightCornerCurrent\"><div class=\"tabTop\"></div></div></div>\n\t\t<div class=\"tabTextCurrent\"><a href=\"javascript://\" title=\"" . $title . "\">" . $itemName . "</a></div>\n\t</td>\n";
+    	}
+    	else {
+    		$display = ($item->visible) ? "" : " style=\"display: none;\"";
+    		$createdMenu .= "\n\t<td class=\"tab\"" . $display . ">\n\t\t<div class=\"tabLeftCorner\"><div class=\"tabRightCorner\"><div class=\"tabTop\"></div></div></div>\n\t\t<div class=\"tabText\"><a href=\"javascript://\" title=\"" . $title . "\">" . $itemName . "</a></div>\n\t</td>\n";
+    	}
+    	$i++;
+		if ($i == $thisMenu->count()) $createdMenu .= "\n\t<td class=\"space\" style=\"width: 100%;\">&nbsp;</td>";
+    }
+	$createdMenu .= "\n</tr></table>\n";
+    
+    return $createdMenu;
+}
+
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->locale; ?>" lang="<?php echo $this->locale; ?>">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name='robots' content='noindex,nofollow' /> 
+<link rel="icon" href="/public/img/favicon.ico" type="image/vnd.microsoft.icon" />
+<?php echo $this->headLink() ?>
+<?php echo $this->headTitle() ?>
+<?php echo $this->headStyle() ?>
+<?php echo $this->headScript() ?>
+</head>
+<body>
+<div id="page">
+<div id="header"<?php if (isset($this->menu) || isset($this->structure)) echo " class=\"tabs\"" ?>>
+<?php
+
+    // view messages
+    if (is_array($this->messages) && (count($this->messages) > 0)) {
+    	echo "<ul class=\"errors\">";
+    	foreach ($this->messages as $m) {
+    		echo "<li>$m</li>\n";
+    	}
+    	echo "</ul>\n";
+    }
+    
+    // form error messages
+    if (isset($this->form)) {
+    	
+    	$eMessages = $this->form->getMessages();
+    	if (count($eMessages) > 0) {
+    		foreach ($eMessages as $key => $msg) {
+    			$elementName = $this->form->getElement($key)->getLabel();
+    			
+    			echo "<ul class=\"errors\">$elementName";
+
+    			foreach ($msg as $m) {
+    				echo "<li>$m</li>\n";
+    			}
+    			
+    			echo "</ul>\n";
+    		}
+    	}
+    }
+    elseif ($this->headMessage) {
+    	
+    	echo "<div class=\"isRequired\">" . $this->headMessage . "</div>\n";
+    }
+
+    if (isset($this->menu)) {
+		echo createMenuTabs ( $this->menu );
+	}
+	elseif (isset($this->structure)) {
+		echo createMenuTabsStructure ( $this->structure );
+	}
+	
+?>
+</div>
+<div id="main">
+<?php
+    
+    // form processed successfully
+    if ($this->success) {
+    	
+    	echo "<div id=\"success\">";
+    	if (isset($this->successMessage)) {
+    		echo $this->successMessage;
+    	}
+    	echo "</div>\n";
+    	
+    	if (isset($this->newContent)) {
+    		
+    		echo "<div id=\"newContent\" style=\"display: none;\">" . $this->newContent . "</div>\n";
+    	}
+    	
+    	if ($this->closeDialog) {
+    		
+    		if (isset($this->createdItem)) {
+				echo "<script type=\"text/javascript\">
+	    		
+	    			var data = $('#newContent').html ();
+	    			var folderName = '" . $this->createdItem->name . "';
+		    		var id = '" . $this->createdItem->id . "';
+		    		var id_parent = '" . $this->createdItem->id_parent . "';
+	    			var display = (window.parent.$('#itemTree ul#' + id_parent + ' li a.expand').length) ? 'block' : 'none';
+	    			
+	    			if ('" . $this->createdItem->entry_type . "' == 'd') {
+	    			
+		    			var margin = window.parent.$('#itemTree ul#' + id_parent + ' li').css ('margin-left');
+		    			
+		    			margin = margin.substring(0, margin.indexOf('px'));
+		    			margin = parseInt(margin) + 12;
+		    			
+	    				var itemsCount = window.parent.$('#itemTree ul.' + id_parent).length;
+		    			var ulCont = '<ul id=\"' + id + '\" class=\"itemTree ' + id_parent + '\" style=\"display: ' + display + ';\"></ul>';
+		    			var liCont = '<li style=\"margin-left: ' +  margin + 'px;\"><a href=\"javascript://\" class=\"status colapse\"><span class=\"button\">&nbsp;</span></a><a href=\"/wiki/docs/select/id/' + id + '\" item=\"' + folderName + '\" class=\"itemLink\"><span class=\"itemName\" style=\"background-image: url(" . $this->createdItem->node_type->icon_small . ") !important;\"></span></a></li>';
+		    			
+		    			if (itemsCount) {
+		    			
+		    				var nextItem = 1;
+		    				
+			    			window.parent.$('#itemTree ul.' + id_parent).each ( function (n) {
+			    				
+			    				if (nextItem) {
+			    				
+			    					thisId = $(this).attr ('id');
+			    					thisFolderName = window.parent.$('#itemTree ul#' + thisId + ' li a span.itemName').text ();
+			    					
+				    				if (thisFolderName.toLowerCase() > folderName.toLowerCase()) {
+				    					
+				    					$(this).before ( ulCont );
+				    					nextItem = 0;
+				    				}
+				    				else if ((n + 1) == itemsCount) {
+				    				
+				    					$(this).after ( ulCont );
+				    				}
+			    				}
+						    } );
+					    }
+					    else {
+					    	window.parent.$('#itemTree ul#' + id_parent + ' li').after ( ulCont );
+					    }
+		    			window.parent.$('ul#' + id).html ( liCont );
+		    			window.parent.$('ul#' + id + ' li a span.itemName').text ( folderName );
+	    			}
+	    			window.parent.$('#RightPane .cont').html ( data );
+	    			window.parent.initIsAllowed ();
+					window.parent.initCheckedItems ();
+					window.parent.initSelectedFolder ();
+					window.parent.initDisplayMode ();
+					window.parent.initDeleteConfirm ();
+					window.parent.initMoveConfirm ();
+					window.parent.initRestoreConfirm ();
+					window.parent.initRestoreThumbnails ();
+					window.parent.initRevertConfirm ();
+					window.parent.initItemHistory ();
+					window.parent.initBack ();
+					if(window.parent.$('a.reload').length) window.parent.tb_init('a.reload');
+					if(window.parent.$('#uploadFiles').length) window.parent.initUpload ();
+	    			window.parent.tb_remove ();
+	    			
+	    		</script>\n";
+    		} else {
+    			echo "<script type=\"text/javascript\">
+	    			window.parent.tb_remove ();
+	    		</script>\n";
+    		}
+    	}
+    }
+    
+    // content rendering
+    echo $this->layout()->content;
+    
+?>
+</div>
+<!-- end of main -->
+<div id="footer"></div>
+</div>
+<!-- end of page -->
+</body>
+</html>

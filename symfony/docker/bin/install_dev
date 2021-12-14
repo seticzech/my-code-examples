@@ -1,0 +1,13 @@
+#!/bin/sh
+
+./docker/bin/build.sh
+./docker/bin/up.sh
+
+./docker/bin/composer/install
+
+./docker/bin/install_dev_db
+
+docker exec -it bb3-php openssl genrsa -out ./var/private.key 2048
+docker exec -it bb3-php openssl rsa -in ./var/private.key -pubout -out ./var/public.key
+
+chmod 660 ./var/public.key

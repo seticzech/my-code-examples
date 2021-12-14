@@ -1,0 +1,14 @@
+{block navbar}
+    <nav class="navbar navbar-light navbar-expand-md d-flex mx-auto" id="tab-menu-bar">
+        <div class="container-fluid container" id="container-sub-menu"><a class="navbar-brand" href="{link Home:default}" id="tab-menu">Projects</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-2"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-2">
+                <ul class="nav navbar-nav">
+                    {foreach $projects as $p}
+                        <li class="nav-item" role="presentation" id="tab-menu-items">
+                            <a class="nav-link active" href="{link Proposition:list $p->projectId}" id="be-nav-link"><i class="fa fa-angle-right" style="color: #3aaa35;font-size: 18px;"></i>&nbsp;{$p->project} ({$p->account})</a>
+                        </li>
+                    {/foreach}
+                </ul>
+            </div>
+        </div>
+    </nav>

@@ -1,0 +1,124 @@
+/* layout: dialog.phtml */
+
+/* forms */
+
+form.dialog {
+	padding: 20px 12px;
+	border: #a2b1a2 1px solid;
+	background-color: #eeffee;
+}
+form table {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: 6px;
+}
+form td {
+	padding: 0;
+	text-align: left;
+	vertical-align: top;
+}
+form label {
+	display: block;
+	padding-bottom: 2px;
+	color: #7f907f;
+}
+form label.checkbox, form label.radio {
+	display: inline;
+}
+form td select, form td input, form td textarea {
+	padding: 3px 0;
+	width: 100%;
+	border: #a2b1a2 1px solid;;
+	background-color: #fff;
+	color: #333;
+	font-size: 110%;
+}
+form td select {
+	padding: 0;
+}
+form td option {
+	padding-top: 3px;
+	padding-bottom: 1px;
+}
+form td textarea {
+	font-family: Verdana CE, Verdana, Helvetica, sans-serif;
+}
+form td.info {
+	padding-bottom: 8px;
+	color: #7f907f;
+	font-style: italic;
+}
+#butReset, #butSubmit, #butSubmitNew, #butCancel, #butClear, #browseServer, #butSelectPartner {
+	margin-top: 8px;
+	padding: 3px 30px;
+	border: 0;
+	color: #fff;
+	background-color: #7c907c;
+	font-size: 110%;
+}
+#butSelectPartner {
+	margin-top: 2px;
+}
+#butReset:hover, #butSubmit:hover, #butSubmitNew:hover, #butCancel:hover, #butClear:hover, #browseServer:hover, #butSelectPartner:hover {
+	background-color: #637363;
+}
+.butSubmit input, input.checkbox, input.radio {
+	width: auto;
+}
+select.required, input.required, textarea.required {
+	background-color: #fefac5;
+}
+select.disabled, input.disabled, textarea.disabled, select.readonly, input.readonly, textarea.readonly {
+	background-color: #eaeaea;
+}
+select.disabled, input.disabled, textarea.disabled {
+	color: #777;
+}
+.formHint {
+	color: #7f907f;
+	font-size: 90%;
+	font-style: italic;
+}
+#browseServer {
+	margin: 0;
+	padding: 3px 12px;
+	width: auto;
+}
+
+/* account Add, Edit ----------------------------------- */
+.account .col1 { width: 20%; }
+.account .col2 { width: 40%; }
+.account .col3 { width: 40%; }
+
+/* partner Add, Edit ------------------------------------ */
+.company .col1 { width: 33%; }
+.company .col2 { width: 33%; }
+.company .col3 { width: 33%; }
+
+.person .col1 { width: 15%; }
+.person .col2 { width: 35%; }
+.person .col3 { width: 35%; }
+.person .col4 { width: 15%; }
+
+/* address Add, Edit ------------------------------------- */
+.address .col1 { width: 35%; }
+.address .col2 { width: 35%; }
+.address .col3 { width: 15%; }
+.address .col4 { width: 15%; }
+
+/* order Add, Edit --------------------------------------- */
+.order .col1 { width: 35%; }
+.order .col2 {  }
+.order .col3 { width: 20%; }
+
+/* order items Add, List --------------------------------- */
+.orderItem .col1 {  }
+.orderItem .col2 { width: 15%; }
+.orderItem .col3 { width: 10%; }
+.orderItem .col4 { width: 15%; }
+.orderItem .col5 { width: 10%; }
+
+
+

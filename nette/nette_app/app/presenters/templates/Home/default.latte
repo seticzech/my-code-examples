@@ -1,0 +1,15 @@
+{block content}
+    <section id="be-form-section" class="vertical-fix" style="height: 100%;">
+        <div class="container">
+
+            {if $flashes}
+                <div n:foreach="$flashes as $flash" class="alert alert-danger">
+                    {$flash->message}
+                </div>
+            {/if}
+
+            <h1 id="h1-be"></h1>
+            <h1 id="h1-be">To manage your propositions, select a project from the 'Projects' menu above.</h1>
+        </div>
+    </section>
+

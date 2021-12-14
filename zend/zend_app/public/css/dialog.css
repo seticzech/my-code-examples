@@ -1,0 +1,313 @@
+/* layout: dialog.phtml */
+
+@CHARSET "UTF-8";
+
+body{
+	margin: 0;
+	padding: 0;
+	background-color: #fff;
+	color: #222;
+	font-family: Verdana CE, Verdana, Helvetica, sans-serif;
+	font-size: 70%;
+}
+h1 {
+	margin-top: 0;
+	color: #222;
+	font-size: 110%;
+}
+h2, h3 {
+	margin: 12px 0;
+	color: #222;
+	font-size: 100%;
+}
+#page {
+	width: 100%;
+	padding-bottom: 24px;
+}
+#header {
+	padding: 0 20px;
+	min-height: 36px;
+	_height: 36px;
+	background-color: #f0f0f0;
+}
+#header.tabs {
+	padding: 0;
+}
+#main {
+	padding: 12px 20px;
+	min-height: 400px;
+	_height:400px;
+}
+ul.errors {
+	padding: 12px 0;
+	margin: 0;
+	color: #c00;
+	list-style-type: none;
+}
+ul.errors li {
+	padding: 3px 0;
+	font-size: 85%;
+}
+.isRequired, .success {
+	padding: 12px 0;
+	color: #c00;
+}
+
+/* item tree */
+
+ul.itemTree, ul#itemTree {
+    margin: 0;
+    padding: 0;
+}
+ul.itemTree ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: none;
+}
+ul.itemTree li {
+	display: block;
+	padding: 4px 0;
+}
+.itemTree a {
+    color: #555;
+    text-decoration: none;
+}
+.itemTree a.status {
+	padding-right: 8px;
+	font-family: courier, monospace;
+}
+.itemTree a span.button {
+    color: #ff882f;
+    cursor: default;
+}
+.itemTree a span.itemName {
+	padding-left: 24px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+.itemTree a span {
+	background-position: left top;
+	background-repeat: no-repeat;
+}
+.itemTree a span.folder {
+	background: url('../img/ico/ico_folder_small.png') left top no-repeat !important;
+}
+a.itemLink:hover {
+	color: #c00;
+}
+a.itemLink:hover span {
+	text-decoration: underline;
+}
+.itemTree a span.current {
+	color: #999;
+	text-decoration: none;
+	cursor: default;
+}
+
+/* success msg */
+
+#success {
+	display: none;
+}
+
+/* buttons */
+
+.but1 {
+	height: 23px;
+	padding-right: 3px;
+	background: url('../img/bg_but_vista1.gif') right top no-repeat;
+}
+.but1 a.but2 {
+	display: block;
+	padding-left: 10px;
+	padding-right: 7px;
+	height: 23px;
+	line-height: 23px;
+	color: #444;
+	background: url('../img/bg_but_vista2.gif') left top no-repeat;
+	font-size: 90%;
+	text-align: center;
+	text-decoration: none;
+}
+.but1 a.but2:hover {
+	background: url('../img/bg_but_vista2_hover.gif') left top no-repeat;
+}
+
+/* tabs */
+
+#header table {
+	margin: 0;
+	padding: 0;
+	border-spacing: 0;
+	background-color: #e8e8e8;
+	border-top: #e8e8e8 10px solid;
+}
+#header table.menuTabs {
+	position: fixed;
+}
+#header td {
+	padding: 0;
+	white-space: nowrap;
+}
+#header .tab {
+	background-color: #f2f2f2;
+	border-bottom: #a0a0a0 1px solid;
+}
+#header .current {
+	background-color: #fff !important;
+	border-bottom: #fff 1px solid !important;
+}
+#header .first {
+	width: 8px;
+	border-bottom: #a0a0a0 1px solid;
+}
+#header .space {
+	padding: 1px;
+	border-bottom: #a0a0a0 1px solid;
+}
+.tabLeftCorner {
+	height: 3px;
+	background: url('../img/tab_dialog_left_corner.gif') left top no-repeat;
+}
+.tabLeftCornerCurrent {
+	height: 3px;
+	background: url('../img/tab_dialog_left_corner_current.gif') left top no-repeat;
+}
+.tabRightCorner {
+	padding: 0 3px;
+	height: 3px;
+	background: url('../img/tab_dialog_right_corner.gif') right top no-repeat;
+}
+.tabRightCornerCurrent {
+	padding: 0 3px;
+	height: 3px;
+	background: url('../img/tab_dialog_right_corner_current.gif') right top no-repeat;
+}
+.tabTop {
+	border-top: #a0a0a0 1px solid;
+}
+.tabText, .tabTextCurrent {
+	padding-top: 4px;
+	padding-bottom: 4px;
+	border-left: #a0a0a0 1px solid;
+	border-right: #a0a0a0 1px solid;
+}
+.tabText a {
+	display: block;
+	padding: 0 10px;
+	color: #555;
+	text-decoration: none;
+}
+.tabText a:hover {
+	color: #222;
+	text-decoration: none;
+}
+.tabTextCurrent a {
+	display: block;
+	padding: 0 10px;
+	color: #222;
+	text-decoration: none;
+}
+.tabTextCurrent a:hover {
+	color: #222;
+	text-decoration: none;
+	cursor: default;
+}
+
+/* list of records */
+
+table.records {
+	width: 100%;
+	border: 0;
+	border-spacing: 0; 
+	border-collapse: collapse; 
+}
+table.records tr {
+	
+}
+table.records tr.thead {
+	background-color: #e6e6e6;
+	border-top: #ccc 1px solid;
+	border-bottom: #bebebe 2px solid;
+	font-size: 90%;
+	font-weight: normal;
+}
+table.records tr.backing {
+	background-color: #eee;
+}
+table.records th {
+	line-height: 20px;
+	font-weight: normal;
+	text-align: left;
+}
+table.records td {
+	padding-top: 4px;
+	padding-bottom: 3px;
+	font-size: 90%;
+	text-align: left;
+	vertical-align: middle;
+}
+table.records .space {
+	width: 12px;
+}
+table.records .deleted {
+	width: 25px;
+	background: url("../img/ico/ico_deleted.png") left center no-repeat;
+}
+table.records .delete {
+	width: 25px;
+	background: url("../img/ico/ico_delete.png") left center no-repeat;
+}
+table.records .restore {
+	width: 25px;
+	background: url("../img/ico/ico_restore.png") left center no-repeat;
+}
+table.records .edit {
+	width: 25px;
+	background: url("../img/ico/ico_edit.png") left center no-repeat;
+}
+table.records .properties {
+	width: 30px;
+	background: url("../img/ico/ico_properties.png") left center no-repeat;
+}
+table.records .edit a, table.records .delete a, table.records .restore a, table.records .properties a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+}
+.norecords {
+	color: #c00;
+}
+.colHover {
+	background-color: #fee6e3 !important;
+}
+
+/* order's items  ----------------------------------------- */
+.orderItems .col1 {  }
+.orderItems .col2 { width: 15%; }
+.orderItems .col3 { width: 10%; }
+.orderItems .col4 { width: 15%; }
+.orderItems .col5 { width: 10%; }
+
+
+/* select of partners items  ------------------------------ */
+.partnerSelect .col1 { width: 80px; }
+.partnerSelect .col2 { width: 250px; }
+.partnerSelect .col3 {  }
+
+
+#itemsSelected {
+	margin-bottom: 12px;
+	padding: 15px;
+	border: #ccc 1px solid;
+}
+#itemsSelected a {
+	color: #666;
+	text-decoration: none;
+}
+#itemsSelected a:hover {
+	color: #c00;
+	text-decoration: underline;
+}

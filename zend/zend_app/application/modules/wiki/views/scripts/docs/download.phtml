@@ -1,0 +1,17 @@
+<?php
+
+	header("Pragma: public");
+	header("Expires: 0");
+	header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+	header("Cache-Control: public");
+	header("Content-Description: File Transfer");
+	header("Content-Type: application/force-download");
+	header("Content-Disposition: attachment; filename=\"$this->filename\"");
+	header("Content-Transfer-Encoding: binary");
+	header("Content-Length: " . $this->filesize);
+	
+	$bytes = @readfile($this->filesource);
+	if ($bytes == 0) {
+		echo 'Error when downloading file: ' . $this->filename;
+	}
+

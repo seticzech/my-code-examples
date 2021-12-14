@@ -1,0 +1,119 @@
+<section id="be-form-section" class="vertical-fix" style="height: 100%;">
+    <div class="container">
+        <form n:name="propositionForm" id="be-form">
+
+            {if $form->hasErrors()}
+                <div class="alert alert-danger">
+                    Please fill the form.
+                </div>
+            {/if}
+
+            <input n:name="id">
+            <input n:name="project_id">
+            <input n:name="active_at">
+            <input n:name="deleted">
+            <div class="form-group"><label class="be-form-heading"><strong>New Proposition - {$project->project}</strong><br></label>{*<button class="btn btn-primary float-right version-toggle" type="button">See V2</button>*}</div>
+            <div class="form-row" id="row-be-form">
+                <div class="col">
+                    <div class="form-group"><label class="be-form-label" n:name="name"><strong>Product name</strong><br></label><input class="form-control item" n:name="name">
+                    </div>
+                </div>
+            </div>
+            <div class="form-row" id="row-be-form">
+                <div class="col">
+                    <div class="form-group"><label class="be-form-label" n:name="proposition_id"><strong>Proposition ID</strong><br></label><input class="form-control item" n:name="proposition_id"></div>
+                </div>
+            </div>
+            <div class="form-row" id="row-be-form">
+                <div class="col">
+                    <div class="form-group"><label class="be-form-label" n:name="product_id"><strong>Product Id</strong><br></label><input class="form-control item" n:name="product_id"></div>
+                </div>
+                <div class="col">
+                    <div class="form-group"><label class="be-form-label"  n:name="article_elk_id"><strong>Article Elk Id</strong><br></label><input class="form-control item" n:name="article_elk_id"></div>
+                </div>
+                <div class="col">
+                    <div class="form-group"><label class="be-form-label"  n:name="article_gas_id"><strong>Article Gas Id</strong><br></label><input class="form-control item" n:name="article_gas_id"></div>
+                </div>
+            </div>
+            <div class="form-row" id="row-be-form">
+                <div class="col" id="be-form-bottom-border"><label class="be-form-label" for="name"><strong>Duration of customer contract</strong><br></label>
+                    <div class="form-row">
+                        <div class="col col-sm-4">
+                            <div>
+                                <fieldset>
+                                    <div class="custom-control custom-radio"><input class="custom-control-input" n:name="duration:1"><label id="be-control-label" class="custom-control-label" n:name="duration:1">{$form[duration]->items[1]}</label></div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="col col-12 col-sm-4">
+                            <div>
+                                <fieldset>
+                                    <div class="custom-control custom-radio"><input class="custom-control-input" n:name="duration:3"><label id="be-control-label" class="custom-control-label" n:name="duration:3">{$form[duration]->items[3]}</label></div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row" id="row-be-form">
+                <div class="col customer-type" id="be-form-bottom-border"><label class="be-form-label"><strong>Customer type</strong><br></label>
+                    <div class="form-row">
+                        <div class="col col-sm-4">
+                            <div>
+                                <fieldset>
+                                    <div class="custom-control custom-radio"><input class="custom-control-input" n:name="customer_type:1"><label id="be-control-label" class="custom-control-label" n:name="customer_type:1">{$form[customer_type]->items[1]}</label></div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="col col-12 col-sm-4">
+                            <div>
+                                <fieldset>
+                                    <div class="custom-control custom-radio"><input class="custom-control-input" n:name="customer_type:2"><label id="be-control-label" class="custom-control-label" n:name="customer_type:2">{$form[customer_type]->items[2]}</label></div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {*
+            <div class="form-row" id="row-be-form">
+                <div class="col col-12">
+                    <div>
+                        <fieldset></fieldset>
+                        <fieldset>
+                            <div class="custom-control custom-checkbox custom-control-inline"><input class="custom-control-input" n:name="active_for_period"><label class="custom-control-label" n:name="active_for_period">I want to define how long this proposition is active for<br></label></div>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group"><label class="be-form-label" for="name"><strong>Start</strong><br></label>
+                        <div class="dropdown"><button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" id="Start">Choose...</button>
+                            <div class="dropdown-menu" role="menu"><a class="dropdown-item be-menu item" role="presentation" href="#">First Item</a><a class="dropdown-item be-menu item" role="presentation" href="#">Second Item</a><a class="dropdown-item be-menu item" role="presentation"
+                                                                                                                                                                                                                                         href="#">Third Item</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group"><label class="be-form-label" for="name"><strong>End</strong><br></label>
+                        <div class="dropdown"><button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button" id="End">Choose...</button>
+                            <div class="dropdown-menu" role="menu"><a class="dropdown-item be-menu item" role="presentation" href="#">First Item</a><a class="dropdown-item be-menu item" role="presentation" href="#">Second Item</a><a class="dropdown-item be-menu item" role="presentation"
+                                                                                                                                                                                                                                         href="#">Third Item</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            *}
+            <div class="form-row" id="row-be-form">
+                <div class="col" {*id="be-form-bottom-top"*}><button class="btn btn-primary" type="button" id="cancel" onclick="window.location={link Proposition:list $project->projectId}">Cancel</button><button class="btn btn-primary float-right" type="submit" id="save">SAVE</button></div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function clearCustomValidity(name) {
+            document.getElementsByName(name).forEach(function(item) {
+                item.setCustomValidity('');
+            })
+        }
+    </script>
+</section>

@@ -1,0 +1,63 @@
+<?php
+
+	// vlozeni JS
+	$this->headScript()->appendFile('/public/js/trimpath-template.js');
+	$this->headScript()->appendFile('/public/js/swfupload.js');
+	
+	// folder tree
+	function folderTree ($folderItems, $template, &$id = null, $id_parent = null, $level = 0, $parentExpanded = false, $folderTree = null)
+	{
+		$level++;
+		foreach ($folderItems as $item) {
+			
+			$id = $item->id;
+			$id_parent = $item->id_parent;
+			$margin = 12 * ($level - 1);
+			$status = ($item->expanded) ? "expand" : "colapse";
+			$button = ($item->items->count()) ? "+" : "&nbsp;";
+			if ($item->expanded) $button = "-";
+			$treeStyle = ($level == 1 || $parentExpanded) ? " style=\"display: block;\"" : "";
+			$expanded = ($item->expanded) ? 1 : 0;
+			
+			$folderTree .= "<ul id=\"" . $id . "\" class=\"itemTree " . $id_parent . "\"" . $treeStyle . ">\n";
+			
+			if ($item->selected) {
+				$currentClass = " current";
+			} else {
+				$currentClass = "";
+			}
+			
+			$folderTree .= "<li style=\"margin-left: " . $margin . "px\"><a href=\"javascript://\" class=\"status " . $status . "\"><span class=\"button\">" . $button . "</span></a><a href=\"" . urldecode($template->url(array('id' => $item->id), 'wiki_docs_select')) . "\" item=\"" . $item->name . "\" class=\"itemLink\"><span class=\"itemName" . $currentClass . "\" style=\"background-image: url(" . $item->node_type->icon_small . ") !important\">" . $item->name . "</span></a></li>\n";
+			$folderTree .= folderTree ($item->items, $template, $id, $id_parent, $level, $expanded);
+			$folderTree .= "</ul>\n";
+		}
+		return $folderTree;
+	}
+
+	//zd ($this->folderTree->toArray());
+
+	echo "<div id=\"main\"><div id=\"main-in\" class=\"splitter\">
+	<div id=\"MySplitter\">
+		<div id=\"LeftPane\"><div class=\"cont\">
+			<div id=\"leftBar\">
+				<div class=\"nav\">" . __('caption:wiki_folders_tree') . "</div>
+				<a href=\"#\" id=\"butExpandAll\" title=\"" . __('title:wiki_expand_all') . "\"></a>
+				<a href=\"#\" id=\"butCollapseAll\" title=\"" . __('title:wiki_collapse_all') . "\"></a>
+			</div>
+			<div class=\"box-in\">
+				<!--<div id=\"treeBar\">&nbsp;</div>-->
+	    		<div id=\"treeCont\"><ul id=\"itemTree\">\n";
+				
+					echo folderTree ($this->folderTree, $this);
+		
+				echo "</ul></div>
+			</div>
+		</div></div>
+		<div id=\"RightPane\"><div class=\"cont\">\n";
+			
+			include($this->template);
+	    		
+	    echo "</div></div>
+	</div>
+	</div></div>\n";
+	

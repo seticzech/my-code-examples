@@ -1,0 +1,66 @@
+/* jquery.ui.all */
+
+/* accordion */
+
+#accBottom.visible {
+	display: block;
+}
+#accBottom.hidden {
+	display: none;
+}
+.acc_header {
+	position: relative;
+	height: 22px;
+	background-color: #fff8dd;
+	border-bottom: #d5d5d5 1px solid;
+}
+.acc_header a {
+	display: block;
+	padding-left: 12px;
+	padding-right: 50px;
+	line-height: 22px;
+	color: #eb861a;
+	text-decoration: none;
+	cursor: default;
+}
+.acc_header a:hover {
+	color: #d87b18;
+	background-color: #faeec3;
+}
+.acc_header a.button {
+	display: block;
+	padding: 0;
+	position: absolute;
+	right: 12px;
+	top: 1px;
+	width: 20px;
+	height: 20px;
+	z-index: 1;
+	cursor: pointer;
+}
+.acc_header a.add {
+	background: url('../img/ico/ico_add.png') center center no-repeat;
+}
+.acc_header a.edit {
+	background: url('../img/ico/ico_edit.png') center center no-repeat;
+}
+.acc_content {
+	padding-bottom: 15px;
+	overflow: auto;
+}
+.acc_content p {
+	margin: 12px;
+}
+table.accordion td {
+	color: #7f907f;
+}
+table.accordion .backing {
+	background-color: #f8fff8 !important;
+}
+table.accordion .colHover {
+	background-color: #fee6e3 !important;
+	cursor: default;
+}
+table.accordion .norecords {
+	color: #c00;
+}

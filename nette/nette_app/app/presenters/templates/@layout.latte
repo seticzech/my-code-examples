@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - brand</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/fonts/line-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Londrina+Solid">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
+    <link rel="stylesheet" href="/css/footer-basic.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguettebox.min.css">
+    <link rel="stylesheet" href="/css/navigation-with-search.css">
+    <link rel="stylesheet" href="/css/smoothproducts.css">
+    <link rel="stylesheet" href="/css/untitled.css">
+</head>
+
+<body>
+
+    <main class="page landing-page">
+        {include header.latte}
+        {if $user->isLoggedIn()}
+            {include navbar.latte}
+        {/if}
+        {include content}
+        {include footer.latte}
+    </main>
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="/js/smoothproducts.min.js"></script>
+    <script src="/js/theme.js"></script>
+
+    {block scripts}
+</body>
+</html>

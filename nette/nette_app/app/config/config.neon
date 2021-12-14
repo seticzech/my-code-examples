@@ -1,0 +1,71 @@
+includes:
+    - acl.neon
+
+parameters:
+    projects:
+        file: %appDir%/../data/projects.json
+    dbal:
+        driver: pdo_sqlite
+        url: sqlite:////%appDir%/../data/db/props.s3db
+        user:
+        password:
+    migrations:
+        driver: %dbal.driver%
+        user: %dbal.user%
+        password: %dbal.password%
+        url: %dbal.url%
+
+
+application:
+    errorPresenter: Error
+    mapping:
+        *: App\Presenters\*Presenter
+
+
+console:
+    url: http://localhost
+
+
+migrations:
+    table: doctrine_migrations
+    column: version
+    directory: %appDir%/migrations
+    namespace: Migrations
+    versionsOrganization: null # null, year, year_and_month
+
+
+extensions:
+    console: Contributte\Console\DI\ConsoleExtension(%consoleMode%)
+    dbal: Nettrine\DBAL\DI\DbalExtension
+    dbal.console: Nettrine\DBAL\DI\DbalConsoleExtension
+    orm: Nettrine\ORM\DI\OrmExtension
+    orm.console: Nettrine\ORM\DI\OrmConsoleExtension
+    orm.annotations: Nettrine\ORM\DI\OrmAnnotationsExtension
+    migrations: Nettrine\Migrations\DI\MigrationsExtension
+
+
+dbal:
+    connection:
+        driver: %dbal.driver%
+        user: %dbal.user%
+        password: %dbal.password%
+        url: %dbal.url%
+
+
+orm:
+    entityManagerClass: Nettrine\ORM\EntityManager
+
+
+orm.annotations:
+    paths:
+        - app/entity
+
+session:
+    autoStart: smart
+    expiration: +2 months
+    savePath: %tempDir%/sessions
+
+services:
+    router: App\RouterFactory::createRouter
+    - App\Facade\Project(%projects.file%)
+    - App\Facade\Proposition
